@@ -1,55 +1,782 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-    <meta charset="UTF-8">
-    <title>BUDEX services s.r.o.</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #0a0d12;
-            color: #ffffff;
-            text-align: center;
-            padding: 50px 20px;
-        }
+  <meta charset="UTF-8" />
+  <title>BUDEX services s.r.o. – externí účetní firma</title>
 
-        h1 {
-            font-size: 48px;
-            margin-bottom: 10px;
-        }
+  <!-- SEO -->
+  <meta name="description" content="BUDEX services s.r.o. – externí účetní firma. Účetnictví, mzdové účetnictví, personalistika a správa majetku pro OSVČ, malé a střední firmy." />
+  <meta name="keywords" content="externí účetní firma, účetnictví, mzdové účetnictví, personalistika, správa majetku, BUDEX services, Planá" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        .highlight {
-            color: #62e8ff;
-        }
+  <style>
+    :root {
+      --bg-main: #05070b;
+      --bg-alt: #0b1018;
+      --accent: #62e8ff;
+      --accent-soft: rgba(98, 232, 255, 0.15);
+      --text-main: #ffffff;
+      --text-muted: #c3c7d1;
+      --border-soft: rgba(255, 255, 255, 0.08);
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.55);
+      --radius: 14px;
+    }
 
-        p {
-            font-size: 20px;
-            max-width: 600px;
-            margin: auto;
-            line-height: 1.6;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        .box {
-            margin-top: 40px;
-            padding: 20px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 10px;
-        }
-    </style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background: radial-gradient(circle at top, #151b2a 0, #05070b 55%);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Hlavní kontejner */
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .content {
+      flex: 1;
+    }
+
+    /* Horní lišta */
+    .top-bar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(16px);
+      background: linear-gradient(to bottom, rgba(5, 7, 11, 0.92), rgba(5, 7, 11, 0.7));
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .top-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .logo {
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      font-size: 15px;
+      text-transform: uppercase;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .nav {
+      display: flex;
+      gap: 18px;
+      font-size: 14px;
+    }
+
+    .nav a {
+      opacity: 0.8;
+    }
+
+    .nav a:hover {
+      opacity: 1;
+      color: var(--accent);
+    }
+
+    /* Hero sekce */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px 70px;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to bottom, rgba(5, 7, 11, 0.1), #05070b 70%),
+        radial-gradient(circle at top left, rgba(98, 232, 255, 0.35), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(98, 232, 255, 0.2), transparent 55%);
+      z-index: -2;
+    }
+
+    .hero-img {
+      position: absolute;
+      inset: 0;
+      background: url("images/budova-hero.jpg") center/cover no-repeat;
+      opacity: 0.22;
+      mix-blend-mode: screen;
+      z-index: -3;
+    }
+
+    .hero-inner {
+      max-width: 1120px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
+      gap: 40px;
+      align-items: center;
+    }
+
+    @media (max-width: 880px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hero-heading {
+      font-size: clamp(30px, 4vw, 40px);
+      line-height: 1.15;
+      margin-bottom: 18px;
+    }
+
+    .hero-heading span {
+      color: var(--accent);
+    }
+
+    .hero-subtitle {
+      font-size: 16px;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin-bottom: 22px;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 26px;
+    }
+
+    .badge {
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      background: rgba(5, 7, 11, 0.7);
+      color: var(--text-muted);
+    }
+
+    .badge span {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease,
+        border-color 0.12s ease, color 0.12s ease;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #041014;
+      box-shadow: 0 14px 35px rgba(98, 232, 255, 0.45);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 40px rgba(98, 232, 255, 0.6);
+    }
+
+    .btn-outline {
+      border-color: var(--border-soft);
+      background: rgba(5, 7, 11, 0.8);
+      color: var(--text-muted);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(9, 14, 23, 0.9);
+    }
+
+    .btn .arrow {
+      margin-left: 8px;
+      font-size: 15px;
+    }
+
+    .hero-card {
+      background: rgba(5, 7, 11, 0.9);
+      border-radius: var(--radius);
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+      padding: 20px 20px 18px;
+    }
+
+    .hero-card-heading {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    .hero-card-heading span {
+      color: var(--accent);
+    }
+
+    .hero-card-text {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .hero-card-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      font-size: 13px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-soft);
+      padding-top: 12px;
+      margin-top: 10px;
+    }
+
+    .hero-card-col strong {
+      display: block;
+      color: var(--accent);
+      font-size: 13px;
+      margin-bottom: 3px;
+    }
+
+    /* Sekce */
+    .section {
+      padding: 40px 20px;
+    }
+
+    .section-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      margin-bottom: 22px;
+    }
+
+    .section-label {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 11px;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 22px;
+      margin-bottom: 4px;
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    /* O nás */
+    .about-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
+      gap: 26px;
+      align-items: start;
+    }
+
+    @media (max-width: 880px) {
+      .about-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .about-text {
+      font-size: 14px;
+      color: var(--text-muted);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .about-highlights {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .pill {
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      padding: 6px 12px;
+      font-size: 12px;
+      color: var(--text-muted);
+      background: rgba(5, 7, 11, 0.8);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .about-card {
+      border-radius: var(--radius);
+      border: 1px solid var(--border-soft);
+      background: linear-gradient(145deg, rgba(5, 7, 11, 0.96), rgba(9, 15, 27, 0.96));
+      padding: 14px 14px 10px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .about-photo {
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .about-photo img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .about-card h3 {
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .about-card p {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* Služby */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+
+    .service-card {
+      border-radius: var(--radius);
+      border: 1px solid var(--border-soft);
+      padding: 16px 14px 14px;
+      background: radial-gradient(circle at top left, var(--accent-soft), rgba(5, 7, 11, 0.95));
+      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.7);
+    }
+
+    .service-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 10px;
+      border: 1px solid rgba(98, 232, 255, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    .service-title {
+      font-size: 15px;
+      margin-bottom: 6px;
+    }
+
+    .service-text {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .service-tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent);
+    }
+
+    /* Kontakt */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.6fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 880px) {
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .contact-card {
+      border-radius: var(--radius);
+      border: 1px solid var(--border-soft);
+      background: linear-gradient(160deg, rgba(5, 7, 11, 0.96), rgba(7, 12, 22, 0.98));
+      padding: 16px 16px 14px;
+      box-shadow: var(--shadow-soft);
+      font-size: 14px;
+    }
+
+    .contact-card h3 {
+      font-size: 15px;
+      margin-bottom: 6px;
+    }
+
+    .contact-row {
+      margin-top: 6px;
+      color: var(--text-muted);
+    }
+
+    .contact-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+    }
+
+    .contact-main {
+      font-size: 14px;
+      margin-bottom: 2px;
+    }
+
+    .contact-main a {
+      color: var(--accent);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .contact-item strong {
+      display: block;
+      color: var(--text-main);
+      margin-bottom: 2px;
+    }
+
+    .contact-actions {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .note {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Patička */
+    .footer {
+      border-top: 1px solid var(--border-soft);
+      padding: 16px 20px 18px;
+      font-size: 12px;
+      color: var(--text-muted);
+      background: #05070b;
+    }
+
+    .footer-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+  </style>
 </head>
+
 <body>
-    <h1>BUDEX <span class="highlight">services</span> s.r.o.</h1>
+  <div class="page">
+    <header class="top-bar">
+      <div class="top-inner">
+        <div class="logo">
+          BUDEX <span>services</span>
+        </div>
+        <nav class="nav">
+          <a href="#onas">O nás</a>
+          <a href="#sluzby">Služby</a>
+          <a href="#kontakt">Kontakt</a>
+        </nav>
+      </div>
+    </header>
 
-    <p>Profesionální a spolehlivé služby. Jednoduchá docházka, účetnictví a podpora pro firmy.</p>
+    <main class="content">
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero-img"></div>
+        <div class="hero-bg"></div>
 
-    <div class="box">
-        <h2 class="highlight">Kontakt</h2>
-        <p>
-            E-mail: <strong>info@budex.cz</strong><br>
-            Telefon: <strong>+420 xxx xxx xxx</strong><br>
-            Adresa: <strong>BUDEX services s.r.o.</strong>
-        </p>
-    </div>
+        <div class="hero-inner">
+          <div>
+            <h1 class="hero-heading">
+              Externí účetní firma pro <span>OSVČ</span>, malé i střední podniky.
+            </h1>
+            <p class="hero-subtitle">
+              BUDEX services s.r.o. – kompletní účetnictví, mzdové účetnictví, personalistika a správa majetku.
+              Pečlivě, diskrétně a včas, aby se vaší firmy mohla soustředit na vlastní podnikání.
+            </p>
+
+            <div class="hero-badges">
+              <div class="badge"><span>2019</span> – od roku založení</div>
+              <div class="badge"><span>Externí účetní tým</span></div>
+              <div class="badge">Účetnictví &amp; mzdy &amp; personalistika</div>
+            </div>
+
+            <div class="hero-actions">
+              <a href="#sluzby" class="btn btn-primary">
+                Mám zájem o služby
+                <span class="arrow">→</span>
+              </a>
+              <a href="#kontakt" class="btn btn-outline">
+                Kontaktovat
+              </a>
+            </div>
+          </div>
+
+          <aside class="hero-card">
+            <h2 class="hero-card-heading">
+              BUDEX <span>services s.r.o.</span>
+            </h2>
+            <p class="hero-card-text">
+              Externí účetní firma se sídlem v moderní administrativní budově v Plané. Poskytujeme stabilní zázemí
+              pro OSVČ, malé i střední firmy, které chtějí mít účetnictví, mzdy a personalistiku v bezpečných rukou.
+            </p>
+
+            <div class="hero-card-row">
+              <div class="hero-card-col">
+                <strong>Sídlo</strong>
+                Planá 67, 370&nbsp;01 Planá
+              </div>
+              <div class="hero-card-col">
+                <strong>Pracovní doba</strong>
+                Po–Pá, 7:00–17:00
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- O NÁS -->
+      <section class="section" id="onas">
+        <div class="section-inner">
+          <header class="section-header">
+            <div class="section-label">O nás</div>
+            <h2 class="section-title">BUDEX services s.r.o.</h2>
+            <p class="section-subtitle">
+              Profesionální externí účetní firma založená v roce 2019.
+            </p>
+          </header>
+
+          <div class="about-layout">
+            <div>
+              <div class="about-text">
+                <p>
+                  BUDEX services s.r.o. poskytuje kompletní účetní a mzdové služby pro OSVČ, malé a střední podniky i
+                  jednotlivce. Naší specializací je vedení účetnictví, mzdové účetnictví, personalistika a správa
+                  majetku.
+                </p>
+                <p>
+                  Klientům nabízíme seriózní a osobní přístup, vysokou míru pečlivosti a diskrétnosti a spolehlivou
+                  podporu v každodenním provozu firmy. Administrativní a personální agendu převezmeme za vás, abyste se
+                  mohli plně soustředit na rozvoj svého podnikání.
+                </p>
+              </div>
+
+              <div class="about-highlights">
+                <div class="pill">
+                  <span class="pill-dot"></span>
+                  Účetnictví, mzdy, personalistika, správa majetku
+                </div>
+                <div class="pill">
+                  <span class="pill-dot"></span>
+                  OSVČ, malé a střední podniky, jednotlivci
+                </div>
+                <div class="pill">
+                  <span class="pill-dot"></span>
+                  Seriózní a individuální přístup ke každému klientovi
+                </div>
+              </div>
+            </div>
+
+            <aside class="about-card">
+              <div class="about-photo">
+                <img src="images/budova-hero.jpg" alt="Sídlo společnosti BUDEX services s.r.o." />
+              </div>
+              <h3>Naše sídlo – Planá 67</h3>
+              <p>
+                Moderní administrativní budova s vlastním zázemím pro tým účetních a mzdových specialistů. Stabilní
+                prostředí, na které se mohou naši klienti dlouhodobě spolehnout.
+              </p>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLUŽBY -->
+      <section class="section" id="sluzby">
+        <div class="section-inner">
+          <header class="section-header">
+            <div class="section-label">Služby</div>
+            <h2 class="section-title">Co pro vás zajistíme</h2>
+            <p class="section-subtitle">
+              Kompletní externí zajištění účetní, mzdové a personální agendy včetně správy majetku.
+            </p>
+          </header>
+
+          <div class="services-grid">
+            <article class="service-card">
+              <div class="service-icon">📒</div>
+              <h3 class="service-title">Účetnictví</h3>
+              <p class="service-text">
+                Komplexní vedení účetnictví pro OSVČ i firmy. Zpracování účetních dokladů, účetních knih, uzávěrek a
+                přehledů pro management. Zajistíme také komunikaci s úřady.
+              </p>
+              <div class="service-tag">Vedení účetnictví • daňové podklady</div>
+            </article>
+
+            <article class="service-card">
+              <div class="service-icon">💶</div>
+              <h3 class="service-title">Mzdové účetnictví</h3>
+              <p class="service-text">
+                Zpracování mezd, přihlášky a odhlášky zaměstnanců, komunikace s OSSZ a zdravotními pojišťovnami,
+                evidenční listy důchodového pojištění, roční zúčtování daně a další mzdová agenda.
+              </p>
+              <div class="service-tag">Mzdy • odvody • evidence</div>
+            </article>
+
+            <article class="service-card">
+              <div class="service-icon">👥</div>
+              <h3 class="service-title">Personalistika</h3>
+              <p class="service-text">
+                Příprava pracovních smluv a dodatků, ukončování pracovních poměrů, evidence docházky a podpora v
+                personálních procesech. Administrativa, na kterou se můžete spolehnout.
+              </p>
+              <div class="service-tag">HR administrativa • dokumentace</div>
+            </article>
+
+            <article class="service-card">
+              <div class="service-icon">🏢</div>
+              <h3 class="service-title">Správa majetku</h3>
+              <p class="service-text">
+                Evidence majetku, odpisové plány, inventarizace a podklady pro účetnictví. Přehledně a v souladu s
+                legislativou.
+              </p>
+              <div class="service-tag">Evidence majetku • odpisy</div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- KONTAKT -->
+      <section class="section" id="kontakt">
+        <div class="section-inner">
+          <header class="section-header">
+            <div class="section-label">Kontakt</div>
+            <h2 class="section-title">Ozvěte se nám</h2>
+            <p class="section-subtitle">
+              Rádi pro vás připravíme individuální nabídku externího účetnictví a mzdových služeb.
+            </p>
+          </header>
+
+          <div class="contact-layout">
+            <div class="contact-card">
+              <h3>BUDEX services s.r.o.</h3>
+
+              <div class="contact-row">
+                <div class="contact-label">Sídlo společnosti</div>
+                <div class="contact-main">
+                  Planá 67, 370&nbsp;01 Planá<br />
+                  IČO: 08220964
+                </div>
+              </div>
+
+              <div class="contact-grid">
+                <div class="contact-item">
+                  <strong>Ředitelka společnosti</strong>
+                  Ing. Iveta Lieblová<br />
+                  Tel.: <a href="tel:+420799573955">+420&nbsp;799&nbsp;573&nbsp;955</a><br />
+                  E-mail: <a href="mailto:iveta.lieblova@budex.com">iveta.lieblova@budex.com</a>
+                </div>
+
+                <div class="contact-item">
+                  <strong>Vedoucí mzdové účtárny</strong>
+                  Ing. Zuzana Kočířová<br />
+                  Tel.: <a href="tel:+420799573955">+420&nbsp;799&nbsp;573&nbsp;955</a><br />
+                  E-mail: <a href="mailto:zuzana.kocirova@budex.com">zuzana.kocirova@budex.com</a>
+                </div>
+
+                <div class="contact-item">
+                  <strong>Obecný kontakt</strong>
+                  E-mail: <a href="mailto:personalni@budex.com">personalni@budex.com</a><br />
+                  Pro poptávky i dotazy ke službám.
+                </div>
+              </div>
+
+              <div class="contact-actions">
+                <a href="mailto:personalni@budex.com?subject=Poptávka%20služeb%20BUDEX%20services" class="btn btn-primary">
+                  Mám zájem o služby
+                  <span class="arrow">→</span>
+                </a>
+                <a href="mailto:personalni@budex.com" class="btn btn-outline">
+                  Kontaktovat
+                </a>
+              </div>
+
+              <p class="note">
+                Cenu vždy řešíme individuálně podle rozsahu služeb a typu klienta. Ozvěte se nám – rádi pro vás
+                připravíme konkrétní nabídku.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <div>© BUDEX services s.r.o., 2019–2025</div>
+        <div>Externí účetní firma – účetnictví, mzdy, personalistika, správa majetku.</div>
+      </div>
+    </footer>
+  </div>
 </body>
 </html>
