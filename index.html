@@ -309,20 +309,30 @@
       gap: 26px;
       align-items: start;
     }
-.onas-gallery {
-    display: flex;
-    gap: 30px;
-    margin-top: 30px;
-    justify-content: center;
-}
-.onas-gallery img {
-    width: 48%;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
-}    
+
+    .onas-gallery {
+      display: flex;
+      gap: 20px;
+      margin-top: 26px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .onas-gallery img {
+      flex: 1 1 30%;
+      max-width: 32%;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      object-fit: cover;
+    }
+
     @media (max-width: 880px) {
       .about-layout {
         grid-template-columns: 1fr;
+      }
+
+      .onas-gallery img {
+        max-width: 100%;
       }
     }
 
@@ -613,12 +623,14 @@
             <p class="section-subtitle">
               Profesionální externí účetní firma založená v roce 2019.
             </p>
-             <div class="onas-gallery">
-                <img src="images/budova-hero.jpg" alt="Sídlo BUDEX" />
-                <img src="images/budova-2.jpg" alt="Sídlo BUDEX — třetí foto" class="onas-bottom-img">
-            </div>
-        </header>
           </header>
+
+          <!-- Galerie tří fotek -->
+          <div class="onas-gallery">
+            <img src="images/budova-hero.jpg" alt="Sídlo BUDEX – pohled na budovu a parkování" />
+            <img src="images/budova-2.jpg" alt="Sídlo BUDEX – čelní pohled na budovu" />
+            <img src="images/021065o11.jpg" alt="Interiér kanceláří BUDEX services s.r.o." />
+          </div>
 
           <div class="about-layout">
             <div>
